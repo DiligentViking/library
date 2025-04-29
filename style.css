@@ -1,0 +1,8 @@
+h1 {
+  margin-bottom: 40px;
+}
+
+th,
+td {
+  outline: 1px solid black;
+}
