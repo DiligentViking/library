@@ -2,7 +2,17 @@ h1 {
   margin-bottom: 40px;
 }
 
+table {
+  border-spacing: 0;  /* need to figure out a way to adjoin adjacent cells so lines are 1px throughout */
+}
+
 th,
 td {
-  outline: 1px solid black;
+  border: 1px solid black;
+  padding: 4px;
+}
+
+thead th {
+  font-size: 18px;
+  padding: 8px;
 }
