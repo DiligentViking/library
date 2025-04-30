@@ -21,7 +21,7 @@ thead th {
   margin-bottom: 14px;
 }
 
-#close-modal {
+#submit-modal,
+#cancel-modal {
   margin-top: 10px;
-  margin-left: 35%;
 }

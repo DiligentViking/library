@@ -14,38 +14,58 @@ function addBookToLibrary(title, author, genre, numPages) {
   myLibrary.push(book);
 }
 
+function updateLibraryTable() {
+  const tableData = document.querySelector('#table-data');
+
+  while (tableData.firstChild) {
+    tableData.removeChild(tableData.firstChild);
+  }
+
+  for (const book of myLibrary) {
+    const newRow = document.createElement('tr');
+
+    const dataTitle = document.createElement('th');
+    dataTitle.textContent = book.title;
+    newRow.append(dataTitle);
+    for (const prop in book) {
+      if (prop == 'title') continue;
+      const dataOther = document.createElement('td');
+      dataOther.textContent = book[prop];
+      newRow.append(dataOther);
+    }
+
+    tableData.appendChild(newRow);
+  }
+}
+
 addBookToLibrary('The Guide', 'Brian Brendon', 'Self-Help', 100);
 addBookToLibrary('Macbeth', 'William Shakespeare', 'Tragedy', 80);
-console.log(myLibrary);
 
-
-const tableData = document.querySelector('#table-data');
-
-for (const book of myLibrary) {
-  const newRow = document.createElement('tr');
-
-  const dataTitle = document.createElement('th');
-  dataTitle.textContent = book.title;
-  newRow.append(dataTitle);
-  for (const prop in book) {
-    if (prop == 'title') continue;
-    const dataOther = document.createElement('td');
-    dataOther.textContent = book[prop];
-    newRow.append(dataOther);
-  }
-  
-  tableData.appendChild(newRow);
-}
+updateLibraryTable();
 
 
 const newBookBtn = document.querySelector('#new-book-btn');
 const newBookModal = document.querySelector('#new-book-modal');
-const closeModal = document.querySelector('#close-modal');
+const cancelModal = document.querySelector('#cancel-modal');
+const submitModal = document.querySelector('#submit-modal');
+const newBookInputs = document.querySelectorAll('#new-book-modal input');
 
 newBookBtn.addEventListener('click', () => {
   newBookModal.showModal();
 });
 
-closeModal.addEventListener('click', () => {
+cancelModal.addEventListener('click', () => {
   newBookModal.close();
+});
+
+submitModal.addEventListener('click', (e) => {
+  e.preventDefault();  // so i just set a custom behavior here (beats having to try to learn the dang default behavior)
+  const bookSpecs = [];
+  for (const input of newBookInputs) {
+    bookSpecs.push(input.value);
+    input.value = '';
+  }
+  addBookToLibrary(bookSpecs[0], bookSpecs[1], bookSpecs[2], bookSpecs[3]);
+  newBookModal.close();
+  updateLibraryTable();
 });
