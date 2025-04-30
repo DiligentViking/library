@@ -26,13 +26,19 @@ function updateLibraryTable() {
 
     const dataTitle = document.createElement('th');
     dataTitle.textContent = book.title;
-    newRow.append(dataTitle);
+    newRow.appendChild(dataTitle);
     for (const prop in book) {
       if (prop == 'title') continue;
       const dataOther = document.createElement('td');
       dataOther.textContent = book[prop];
-      newRow.append(dataOther);
+      newRow.appendChild(dataOther);
     }
+    
+    const dataBtn = document.createElement('td');
+    const delBtn = document.createElement('button');
+    delBtn.textContent = 'Delete';
+    dataBtn.appendChild(delBtn);
+    newRow.appendChild(dataBtn);
 
     tableData.appendChild(newRow);
   }
@@ -69,3 +75,14 @@ submitModal.addEventListener('click', (e) => {
   newBookModal.close();
   updateLibraryTable();
 });
+
+
+const tableData = document.querySelector('#table-data');
+
+tableData.addEventListener('click', (e) => {
+  console.log(e);
+  console.log(e.target);
+  console.log(e.target.parentNode);
+  console.log(e.target.parentNode.parentNode);
+  tableData.removeChild(e.target.parentNode.parentNode)
+})
