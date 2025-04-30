@@ -40,7 +40,12 @@ for (const book of myLibrary) {
 
 const newBookBtn = document.querySelector('#new-book-btn');
 const newBookModal = document.querySelector('#new-book-modal');
+const closeModal = document.querySelector('#close-modal');
 
 newBookBtn.addEventListener('click', () => {
   newBookModal.showModal();
+});
+
+closeModal.addEventListener('click', () => {
+  newBookModal.close();
 });
