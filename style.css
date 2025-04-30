@@ -21,10 +21,3 @@ thead th {
   margin-bottom: 14px;
 }
 
-#new-book-modal {
-  /* top: 40%; */  /* nevermind it automatically centers itself both ways when you use js */
-}
-
-/* #new-book-modal::backdrop {
-  background-image: 
-} */

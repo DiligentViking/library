@@ -41,9 +41,6 @@ for (const book of myLibrary) {
 const newBookBtn = document.querySelector('#new-book-btn');
 const newBookModal = document.querySelector('#new-book-modal');
 
-document.addEventListener("DOMContentLoaded", () => {
-  console.log('loaded');
-  newBookBtn.addEventListener('click', () => {
-    newBookModal.showModal();
-  });
+newBookBtn.addEventListener('click', () => {
+  newBookModal.showModal();
 });
