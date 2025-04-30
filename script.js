@@ -26,13 +26,24 @@ for (const book of myLibrary) {
 
   const dataTitle = document.createElement('th');
   dataTitle.textContent = book.title;
+  newRow.append(dataTitle);
   for (const prop in book) {
     if (prop == 'title') continue;
     const dataOther = document.createElement('td');
     dataOther.textContent = book[prop];
     newRow.append(dataOther);
   }
-  newRow.prepend(dataTitle);
   
   tableData.appendChild(newRow);
 }
+
+
+const newBookBtn = document.querySelector('#new-book-btn');
+const newBookModal = document.querySelector('#new-book-modal');
+
+document.addEventListener("DOMContentLoaded", () => {
+  console.log('loaded');
+  newBookBtn.addEventListener('click', () => {
+    newBookModal.showModal();
+  });
+});
