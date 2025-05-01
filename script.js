@@ -100,16 +100,18 @@ tableData.addEventListener('click', (e) => {
   // const parentRow = e.target.parentNode.parentNode;  // old way (that worked)
   // tableData.removeChild(parentRow);
 
-  if (e.target.textContent == 'Delete') {
-    const btnId = e.target.getAttribute('data-id');  // you know, i could have just updated the backend (below) and then update the frontend with updateLibraryTable()
-    const rowToRemove = document.querySelector(`tr[data-id="${btnId}"]`);
-    tableData.removeChild(rowToRemove);
+  // const btnId = e.target.getAttribute('data-id');  // second old way (also worked)
+  // const rowToRemove = document.querySelector(`tr[data-id="${btnId}"]`);
+  // tableData.removeChild(rowToRemove);
 
+  if (e.target.textContent == 'Delete') {
+    const btnId = e.target.getAttribute('data-id');
     for (const book of myLibrary) {
       if (book.id == btnId) {
         const bookLocation = myLibrary.indexOf(book);
         myLibrary.splice(bookLocation, 1);
       }
     }
+    updateLibraryTable();
   }
 })
