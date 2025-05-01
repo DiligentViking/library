@@ -23,6 +23,7 @@ function updateLibraryTable() {
 
   for (const book of myLibrary) {
     const newRow = document.createElement('tr');
+    newRow.setAttribute('data-id', book.id);
 
     const dataTitle = document.createElement('th');
     dataTitle.textContent = book.title;
@@ -36,6 +37,7 @@ function updateLibraryTable() {
     
     const dataBtn = document.createElement('td');
     const delBtn = document.createElement('button');
+    delBtn.setAttribute('data-id', book.id);
     delBtn.textContent = 'Delete';
     dataBtn.appendChild(delBtn);
     newRow.appendChild(dataBtn);
@@ -46,6 +48,7 @@ function updateLibraryTable() {
 
 addBookToLibrary('The Guide', 'Brian Brendon', 'Self-Help', 100);
 addBookToLibrary('Macbeth', 'William Shakespeare', 'Tragedy', 80);
+addBookToLibrary("Roget's Thes.", 'Robert Roget', 'Thesaurus', 202);
 
 updateLibraryTable();
 
@@ -80,9 +83,20 @@ submitModal.addEventListener('click', (e) => {
 const tableData = document.querySelector('#table-data');
 
 tableData.addEventListener('click', (e) => {
-  console.log(e);
-  console.log(e.target);
-  console.log(e.target.parentNode);
-  console.log(e.target.parentNode.parentNode);
-  tableData.removeChild(e.target.parentNode.parentNode)
+  /* console.log(e.target.textContent);  // this actually works!
+  console.log(e.target.previousSibling);  // it seems this may have potential */
+
+  // const parentRow = e.target.parentNode.parentNode;  // old way
+  // tableData.removeChild(parentRow);
+
+  const btnId = e.target.getAttribute('data-id');
+  const rowToRemove = document.querySelector(`tr[data-id="${btnId}"]`);
+  tableData.removeChild(rowToRemove);
+
+  for (const book of myLibrary) {
+    if (book.id == btnId) {
+      const bookLocation = myLibrary.indexOf(book);
+      myLibrary.splice(bookLocation, 1);
+    }
+  }
 })
