@@ -8,6 +8,14 @@ function Book(title, author, genre, numPages, id) {
   this.id = id;
 }
 
+Book.prototype.toggleRead = function() {
+  if (this.read) {
+    this.read = false;
+  } else {
+    this.read = true;
+  }
+}
+
 function addBookToLibrary(title, author, genre, numPages) {
   const uuid = self.crypto.randomUUID();
   const book = new Book(title, author, genre, numPages, uuid);
@@ -30,28 +38,31 @@ function updateLibraryTable() {
     newRow.appendChild(dataTitle);
 
     for (const prop in book) {
-      if (prop == 'title') continue;
+      if (prop == 'title' || prop == 'read' || !book.hasOwnProperty(prop)) {  // at this point i may as well repeat code for each prop
+        continue;
+      }
       const dataOther = document.createElement('td');
       dataOther.textContent = book[prop];
       newRow.appendChild(dataOther);
     }
-    
-    const dataBtn = document.createElement('td');
+
+    const dataDel = document.createElement('td');
     const delBtn = document.createElement('button');
     delBtn.setAttribute('data-id', book.id);
     delBtn.textContent = 'Delete';
-    dataBtn.appendChild(delBtn);
-    newRow.appendChild(dataBtn);
+    dataDel.appendChild(delBtn);
+    newRow.appendChild(dataDel);
 
-    const dataCheckRead = document.createElement('td');
-    const label = document.createElement('label');
-    const checkbox = document.createElement('input');
-    label.setAttribute('for', book.id);
-    checkbox.setAttribute('id', book.id);
-    checkbox.setAttribute('type', 'checkbox');
-    label.textContent = 'Read';
-    dataCheckRead.append(label, checkbox);
-    newRow.appendChild(dataCheckRead);
+    const dataToggleRead = document.createElement('td');
+    const toggleReadBtn = document.createElement('button');
+    toggleReadBtn.setAttribute('data-id', book.id)
+    if (book.read) {
+      toggleReadBtn.textContent = 'Read: yes';
+    } else {
+      toggleReadBtn.textContent = 'Read: not yet';
+    }
+    dataToggleRead.appendChild(toggleReadBtn);
+    newRow.appendChild(dataToggleRead);
 
     tableData.appendChild(newRow);
   }
@@ -110,6 +121,16 @@ tableData.addEventListener('click', (e) => {
       if (book.id == btnId) {
         const bookLocation = myLibrary.indexOf(book);
         myLibrary.splice(bookLocation, 1);
+      }
+    }
+    updateLibraryTable();
+  } else if (e.target.textContent.slice(0, 4) == 'Read') {  // seems a bit un-DRY
+    const btnId = e.target.getAttribute('data-id');
+    for (const book of myLibrary) {
+      if (book.id == btnId) {
+        console.log(book);
+        book.toggleRead();
+        console.log(book);
       }
     }
     updateLibraryTable();
