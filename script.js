@@ -1,6 +1,6 @@
 const myLibrary = [];
 
-function Book(title, author, genre, numPages, id) {  // I am kind of unsure why TOP wants the params in the second func
+function Book(title, author, genre, numPages, id) {
   this.title = title;
   this.author = author;
   this.genre = genre;
@@ -28,6 +28,7 @@ function updateLibraryTable() {
     const dataTitle = document.createElement('th');
     dataTitle.textContent = book.title;
     newRow.appendChild(dataTitle);
+
     for (const prop in book) {
       if (prop == 'title') continue;
       const dataOther = document.createElement('td');
@@ -41,6 +42,16 @@ function updateLibraryTable() {
     delBtn.textContent = 'Delete';
     dataBtn.appendChild(delBtn);
     newRow.appendChild(dataBtn);
+
+    const dataCheckRead = document.createElement('td');
+    const label = document.createElement('label');
+    const checkbox = document.createElement('input');
+    label.setAttribute('for', book.id);
+    checkbox.setAttribute('id', book.id);
+    checkbox.setAttribute('type', 'checkbox');
+    label.textContent = 'Read';
+    dataCheckRead.append(label, checkbox);
+    newRow.appendChild(dataCheckRead);
 
     tableData.appendChild(newRow);
   }
@@ -86,17 +97,19 @@ tableData.addEventListener('click', (e) => {
   /* console.log(e.target.textContent);  // this actually works!
   console.log(e.target.previousSibling);  // it seems this may have potential */
 
-  // const parentRow = e.target.parentNode.parentNode;  // old way
+  // const parentRow = e.target.parentNode.parentNode;  // old way (that worked)
   // tableData.removeChild(parentRow);
 
-  const btnId = e.target.getAttribute('data-id');
-  const rowToRemove = document.querySelector(`tr[data-id="${btnId}"]`);
-  tableData.removeChild(rowToRemove);
+  if (e.target.textContent == 'Delete') {
+    const btnId = e.target.getAttribute('data-id');  // you know, i could have just updated the backend (below) and then update the frontend with updateLibraryTable()
+    const rowToRemove = document.querySelector(`tr[data-id="${btnId}"]`);
+    tableData.removeChild(rowToRemove);
 
-  for (const book of myLibrary) {
-    if (book.id == btnId) {
-      const bookLocation = myLibrary.indexOf(book);
-      myLibrary.splice(bookLocation, 1);
+    for (const book of myLibrary) {
+      if (book.id == btnId) {
+        const bookLocation = myLibrary.indexOf(book);
+        myLibrary.splice(bookLocation, 1);
+      }
     }
   }
 })
