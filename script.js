@@ -128,9 +128,7 @@ tableData.addEventListener('click', (e) => {
     const btnId = e.target.getAttribute('data-id');
     for (const book of myLibrary) {
       if (book.id == btnId) {
-        console.log(book);
         book.toggleRead();
-        console.log(book);
       }
     }
     updateLibraryTable();
