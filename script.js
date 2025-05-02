@@ -18,8 +18,8 @@ function addBookToLibrary(title, author, genre, pages, read) {
 }
 
 function displayBook(book) {
-  const bookDiv = document.createElement('div');
-  bookDiv.classList.add('book-div');
+  const bookCard = document.createElement('div');
+  bookCard.classList.add('book-card');
 
   const bookHeader = document.createElement('div');
   bookHeader.classList.add('book-header');
@@ -50,7 +50,7 @@ function displayBook(book) {
   btnRead.classList.add('btn-read');
   btnRead.textContent = (book.read) ? 'Read' : 'Not read yet';
 
-  bookDiv.append(bookHeader, author, genre, pages, btnRead);
+  bookCard.append(bookHeader, author, genre, pages, btnRead);
   
   bookContainer.append(bookDiv);
 }
