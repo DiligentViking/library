@@ -40,7 +40,7 @@ function displayBook(book) {
 
   const genre = document.createElement('p');
   genre.classList.add('genre');
-  author.textContent = book.genre;
+  genre.textContent = book.genre;
   
   const pages = document.createElement('p');
   pages.classList.add('pages');
@@ -52,7 +52,7 @@ function displayBook(book) {
 
   bookCard.append(bookHeader, author, genre, pages, btnRead);
   
-  bookContainer.append(bookDiv);
+  bookContainer.append(bookCard);
 }
 
 function displayLibrary() {
