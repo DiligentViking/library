@@ -1,7 +1,8 @@
-.new-book {
+.btn-add-book {
   margin-bottom: 20px;
 }
 
 .book-card {
   border: 1px solid gray;
+  margin-bottom: 10px;
 }
