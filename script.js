@@ -25,6 +25,7 @@ function addBookToLibrary(title, author, genre, pages, read) {
 function displayBook(book) {
   const bookCard = document.createElement('div');
   bookCard.classList.add('book-card');
+  bookCard.setAttribute('data-id', book.id);
 
   const bookHeader = document.createElement('div');
   bookHeader.classList.add('book-header');
@@ -88,7 +89,7 @@ bookForm.addEventListener('submit', (e) => {
     return;  // beautiful. ty, Alessandro.
   }
 
-  e.preventDefault()
+  e.preventDefault();
 
   const title = document.querySelector('#title').value;
   const author = document.querySelector('#author').value;
@@ -102,4 +103,25 @@ bookForm.addEventListener('submit', (e) => {
   displayBook(bookToDisplay);
 
   bookModal.close();
+});
+
+bookContainer.addEventListener('click', (e) => {
+  const targetClass = e.target.classList.value;
+  let cardId;  // number of parentNode's in chain may vary if structure is modified
+  let bookIndex;  // now this does not very so i do repeat myself below
+  switch (targetClass) {
+    case 'btn-delete':
+      cardId = e.target.parentNode.parentNode.dataset.id;
+      bookIndex = myLibrary.findIndex((book) => book.id == cardId);
+      myLibrary.splice(bookIndex, 1);
+      bookContainer.removeChild(e.target.parentNode.parentNode);
+      break;
+      
+    case 'btn-read':
+      cardId = e.target.parentNode.dataset.id;
+      bookIndex = myLibrary.findIndex((book) => book.id == cardId);
+      myLibrary[bookIndex].read = !myLibrary[bookIndex].read;
+      e.target.textContent = (myLibrary[bookIndex].read) ? 'Read' : 'Not read yet';
+      break;
+  }
 });
