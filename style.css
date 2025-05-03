@@ -1,5 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;  /* i just zapped everything, k? */
+}
+
+html {
+  font-family: sans-serif;
+}
+
 .btn-add-book {
-  margin-bottom: 20px;
+  width: 150px;
+  height: 34px;
+  margin: 20px auto;
 }
 
 .book-card {

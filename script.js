@@ -91,13 +91,19 @@ bookForm.addEventListener('submit', (e) => {
 
   e.preventDefault();
 
-  const title = document.querySelector('#title').value;
-  const author = document.querySelector('#author').value;
-  const genre = document.querySelector('#genre').value;
-  const pages = document.querySelector('#pages').value;
-  const read = document.querySelector('#read').checked;
+  const title = document.querySelector('#title');
+  const author = document.querySelector('#author');
+  const genre = document.querySelector('#genre');
+  const pages = document.querySelector('#pages');
+  const read = document.querySelector('#read');
 
-  addBookToLibrary(title, author, genre, pages, read);
+  addBookToLibrary(title.value, author.value, genre.value, pages.value, read.checked);
+
+  title.value = '';
+  author.value = '';
+  genre.value = '';
+  pages.value = '';
+  read.checked = false;
 
   const bookToDisplay = myLibrary[myLibrary.length - 1];
   displayBook(bookToDisplay);
