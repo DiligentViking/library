@@ -1,18 +1,50 @@
+@font-face{
+  font-family: 'ubuntuuu';
+  src: url('./ubuntu_font/Ubuntu-R.ttf') format('truetype');
+}  /* looks fuzzy somehow */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;  /* i just zapped everything, k? */
 }
 
+:root {
+  --aquamarine: aquamarine;
+  --light-aqua: rgb(200, 255, 237);
+  --heavy-aqua: rgb(0, 255, 170);
+  --blue: rgb(0, 110, 255);
+}
+
 html {
-  font-family: sans-serif;
+  font-family: 'ubuntuuu', sans-serif;
+}
+
+
+.container-btn {
+  display: flex;
+  justify-content: center;
 }
 
 .btn-add-book {
-  width: 150px;
-  height: 34px;
-  margin: 20px auto;
+  background-color: var(--heavy-aqua);
+  font-size: 24px;
+  font-weight: bold;
+
+  border: none;
+  border-radius: 20px;  /* the max */
+
+  width: 164px;
+  height: 38px;
+
+  margin: 24px;
 }
+
+.btn-add-book:hover {
+  border: 2px solid var(--blue);
+  cursor: cell;  /* this is a fun property */
+}
+
 
 .book-card {
   border: 1px solid gray;
