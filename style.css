@@ -10,10 +10,15 @@
 }
 
 :root {
-  --aquamarine: aquamarine;
-  --light-aqua: rgb(200, 255, 237);
-  --heavy-aqua: rgb(0, 255, 170);
+  --heavy-aqua: rgb(0, 255, 200);
+  --aqua: rgb(154, 255, 235);
+  --light-aqua: rgb(200, 255, 250);
   --blue: rgb(0, 110, 255);
+  --light-blue: rgb(87, 160, 255);
+  --gray: gray;
+  --shadow-gray: rgb(182, 182, 182);
+  --light-gray: lightgray;
+  --red: rgb(255, 180, 180);
 }
 
 html {
@@ -39,14 +44,81 @@ html {
 
   margin: 24px;
 }
-
 .btn-add-book:hover {
   border: 2px solid var(--blue);
   cursor: cell;  /* this is a fun property */
 }
 
 
+.book-container {
+  margin: 0px 20px;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));  /* how did i remember that? */
+  gap: 10px;
+}
+
 .book-card {
-  border: 1px solid gray;
-  margin-bottom: 10px;
+  background-color: var(--light-aqua);
+  box-shadow: 2px 2px 4px var(--shadow-gray);
+
+  border: 1px solid var(--gray);
+  border-radius: 14px;
+  padding: 14px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.book-card:hover {
+  background-color: var(--aqua);
+}
+
+.book-card > .book-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-delete {
+  background-color: var(--red);
+  border: 1px solid black;
+  border-radius: 20px;
+  min-width: 30px;  /* should probably be smaller as it is not as important */
+  height: 30px;
+  margin-top: -6px;
+  margin-right: -6px;
+}
+.btn-delete:hover {
+  cursor: pointer;
+}
+
+/* .book-card .author,
+.book-card .genre,
+.book-card .pages,
+.book-card .btn-read {
+
+} */
+
+.btn-read {
+  background-color: var(--light-gray);
+  font-size: 16px;
+
+  border: 1px solid var(--gray);
+  border-radius: 20px;
+
+  margin: 0 auto;  /* did this trick not work earlier because the parent did not have a defined width? */
+  margin-top: auto;  /* another good trick */
+
+  width: 80%;
+  height: 30px;
+
+  /* justify-self: flex-end;  /* dint do anything */
+}
+
+.btn-read[data-read="true"] {
+  background-color: var(--light-blue);
+}
+
+.btn-read:hover {
+  cursor: pointer;
 }

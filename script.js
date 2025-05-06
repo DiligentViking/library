@@ -54,7 +54,8 @@ function displayBook(book) {
 
   const btnRead = document.createElement('button');
   btnRead.classList.add('btn-read');
-  btnRead.textContent = (book.read) ? 'Read' : 'Not read yet';
+  btnRead.setAttribute('data-read', book.read);
+  btnRead.textContent = (book.read) ? '🤓Read!' : '🫥Not read yet';
 
   bookCard.append(bookHeader, author, genre, pages, btnRead);
   
@@ -68,8 +69,12 @@ function displayLibrary() {
   })
 }
 
-addBookToLibrary('1984', 'George Orwell', 'dystopia', 328, false);
-addBookToLibrary('Space Drifters', 'Paul Regnier', 'sci-fi', 151, true);
+addBookToLibrary('1984', 'George Orwell', 'dystopia', 328, true);
+addBookToLibrary('The Emerald Enigma', 'Paul Regnier', 'sci-fi', 151, true);
+addBookToLibrary('Macbeth', 'William Shakespeare', 'tragedy', 80, false);
+addBookToLibrary('The Hobbit', 'JRR Tolkien', 'fantasy', 314, false);
+addBookToLibrary('To Kill a Mockingbird', 'Harper Lee', 'American', 290, true);
+addBookToLibrary('The Iron Gauntlet', 'Paul Regnier', 'sci-fi', 244, false);
 
 // displayBook(myLibrary[0]);  // this works
 displayLibrary();
@@ -127,7 +132,10 @@ bookContainer.addEventListener('click', (e) => {
       cardId = e.target.parentNode.dataset.id;
       bookIndex = myLibrary.findIndex((book) => book.id == cardId);
       myLibrary[bookIndex].read = !myLibrary[bookIndex].read;
-      e.target.textContent = (myLibrary[bookIndex].read) ? 'Read' : 'Not read yet';
+      const isRead = myLibrary[bookIndex].read;
+      e.target.setAttribute('data-read', isRead);
+      // console.log(e.target);
+      e.target.textContent = (myLibrary[bookIndex].read) ? '🤓Read!' : '🫥Not read yet';
       break;
   }
 });
