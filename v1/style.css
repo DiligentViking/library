@@ -1,0 +1,27 @@
+h1 {
+  margin-bottom: 40px;
+}
+
+table {
+  border-spacing: 0;  /* need to figure out a way to adjoin adjacent cells so lines are 1px throughout */
+}
+
+th,
+td {
+  border: 1px solid black;
+  padding: 4px;
+}
+
+thead th {
+  font-size: 20px;
+  padding: 8px;
+}
+
+#new-book-btn {
+  margin-bottom: 14px;
+}
+
+#submit-modal,
+#cancel-modal {
+  margin-top: 10px;
+}
