@@ -25,3 +25,17 @@ thead th {
 #cancel-modal {
   margin-top: 10px;
 }
+
+
+.credit {
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  margin-top: 40px;
+  margin-bottom: 10px;
+}
+.credit a:hover {
+  background-color: rgb(0, 128, 128, 0.25);
+  outline-width: 2px solid rgb(0, 128, 128, 0.6);  /* border would change the size */
+}
