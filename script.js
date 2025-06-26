@@ -7,13 +7,15 @@ const bookForm = document.querySelector('.book-form');
 
 const myLibrary = [];
 
-function Book(id, title, author, genre, pages, read) {
-  this.id = id;
-  this.title = title;
-  this.author = author;
-  this.genre = genre;
-  this.pages = pages;
-  this.read = read;
+class Book {
+  constructor(id, title, author, genre, pages, read) {
+    this.id = id;
+    this.title = title;
+    this.author = author;
+    this.genre = genre;
+    this.pages = pages;
+    this.read = read;
+  }
 }
 
 function addBookToLibrary(title, author, genre, pages, read) {
